@@ -638,9 +638,9 @@ void EtbController::checkJam(percent_t setpoint, percent_t observation) {
 		if (absError > jamDetectThreshold && engine->module<IgnitionController>()->getIgnState()) {
 			if (m_jamDetectTimer.hasElapsedSec(jamTimeout)) {
 				// ETB is jammed!
-				jamDetected = true;
+				jamDetected = false;
 
-				getLimpManager()->reportEtbProblem();
+//				getLimpManager()->reportEtbProblem();
 			}
 		} else {
 			m_jamDetectTimer.reset(nowNt);
