@@ -55,8 +55,8 @@ angle_t getRunningAdvance(float rpm, float engineLoad) {
 
   float vehicleSpeed = Sensor::getOrZero(SensorType::VehicleSpeed);
   float wheelSlip = Sensor::getOrZero(SensorType::WheelSlipRatio);
-  engine->ignitionState.tractionAdvanceDrop = tcTimingDropTable.getValue(wheelSlip, vehicleSpeed);
-  engine->engineState.tractionControlSparkSkip = tcSparkSkipTable.getValue(wheelSlip, vehicleSpeed);
+  engine->ignitionState.tractionAdvanceDrop = tcTimingDropTable.getValue(vehicleSpeed, wheelSlip);
+  engine->engineState.tractionControlSparkSkip = tcSparkSkipTable.getValue(vehicleSpeed, wheelSlip);
   engine->engineState.updateSparkSkip();
 
   advanceAngle += engine->ignitionState.tractionAdvanceDrop;
